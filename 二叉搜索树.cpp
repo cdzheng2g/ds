@@ -27,27 +27,63 @@ treeNode* del(treeNode* node,int key){
         node->left= del(node->left,key);
     }else if (node->key<key){
         node->right= del(node->right,key);
-    }else{
-        if (node->left== nullptr){
-            treeNode* tmp=node->right;
+    }
+    else {
+        if (node->left == nullptr) {
+            treeNode *tmp = node->right;
             delete node;
             return tmp;
-        }else if (node->right== nullptr){
-            treeNode* tmp = node->left;
+        } else if (node->right == nullptr) {
+            treeNode *tmp = node->left;
             delete node;
             return tmp;
-        }
+        } else {
 
-        treeNode* tmp=node->right;
-        while(tmp->left!= nullptr){
-            tmp=tmp->left;
+            treeNode *tmp = node->right;
+            while (tmp->left != nullptr) {
+                tmp = tmp->left;
+            }
+            node->key = tmp->key;
+            node->right = del(node->right, tmp->key);
         }
-        node->key = tmp->key;
-        node->right = del(node->right, tmp->key);
     }
     return node;
 
 }
+
+treeNode* d(treeNode* node,int key){
+    if(node== nullptr){
+        return node;
+    }
+    if(node->key>key){
+        node->left=d(node->left,key);
+    }else if(node->key<key){
+        node->right=d(node->right,key);
+    }
+    else {
+        if (node->left == nullptr) {
+            treeNode *tmp = node->right;
+            delete node;
+            return tmp;
+        } else if (node->right == nullptr) {
+            treeNode *tmp = node->left;
+            delete node;
+            return tmp;
+        } else {
+            treeNode *tmp = node->right;
+
+            while (tmp->left != nullptr) {
+                tmp = tmp->left;
+            }
+            node->key = tmp->key;
+            node->right = d(node->right, tmp->key);
+        }
+    }
+    return node;
+}
+
+
+
 
 
 
@@ -96,6 +132,8 @@ int main(){
     for (auto &s:v) {
             root= insert(root,s);
     }
+    d(root,17);
     search(root,17);
+
 
 }
