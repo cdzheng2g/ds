@@ -20,9 +20,36 @@ treeNode* insert(treeNode* node,int key){
 }
 
 
-treeNode* del(){
+treeNode* del(treeNode* node,int key){
+    if(node== nullptr) return nullptr;
+
+    if(node->key>key){
+        node->left= del(node->left,key);
+    }else if (node->key<key){
+        node->right= del(node->right,key);
+    }else{
+        if (node->left== nullptr){
+            treeNode* tmp=node->right;
+            delete node;
+            return tmp;
+        }else if (node->right== nullptr){
+            treeNode* tmp = node->left;
+            delete node;
+            return tmp;
+        }
+
+        treeNode* tmp=node->right;
+        while(tmp->left!= nullptr){
+            tmp=tmp->left;
+        }
+        node->key = tmp->key;
+        node->right = del(node->right, tmp->key);
+    }
+    return node;
 
 }
+
+
 
 
 void search(treeNode* node,int key){
