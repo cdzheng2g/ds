@@ -20,6 +20,11 @@ treeNode* insert(treeNode* node,int key){
 }
 
 
+treeNode* del(){
+
+}
+
+
 void search(treeNode* node,int key){
     if(node== nullptr){
         cout<<"未找到";
