@@ -19,6 +19,15 @@ treeNode* insert(treeNode* node,int key){
     return node;
 }
 
+
+
+treeNode* LL(treeNode* node){
+
+}
+treeNode* RR(treeNode* node){
+
+}
+
 int getHeight(treeNode* node){
 
     if(node== nullptr){
