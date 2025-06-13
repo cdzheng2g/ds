@@ -19,11 +19,17 @@ treeNode* insert(treeNode* node,int key){
     return node;
 }
 
-
-
 treeNode* LL(treeNode* node){
-
+    if (node== nullptr||node->left== nullptr) return node;
+    treeNode* temp=node->left->right;
+    treeNode* child=node->left;
+    node->left=temp;
+    child->right=node;
+    return child;
 }
+
+
+
 treeNode* RR(treeNode* node){
 
 }
